@@ -1,0 +1,161 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #b4b4b4;
+}
+.img-slider{
+box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.66);
+position: relative;
+width: 600px;
+height: 400px;
+margin: 10px;
+background: #fff;
+border-radius: 10px;
+}
+.img-slider .slide{
+    overflow: hidden;
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: .7s;
+}
+.img-slider .slide.active{
+    opacity: 1;
+}
+/*car styles */
+.img-slider .slide .car{
+    position: absolute;
+    width: 81%;
+    object-fit: contain;
+    top: 40%;
+    right: 2.5px;
+}
+#car-2{
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    bottom: 0;
+}
+/*car styles end*/
+/*text styles */
+.img-slider .slide h1{
+    position: absolute;
+    font-weight: 700;
+    color: #d1d1d1;
+    line-height: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: clamp(1.25rem, 0.125rem + 18vw, 6.875rem);
+    top: 37%;
+}
+#h1-3{
+    font-size: clamp(1.875rem, -0.515rem + 14.706vw, 5rem);
+}
+/*text styles end */
+/*info styles*/
+.img-slider .slide .info{
+    position: absolute;
+    top: 0;
+    padding: 5px 15px;
+}
+/*logo styles */
+.img-slider .slide .info .logo{
+    width: 35%;
+    object-fit: contain;
+}
+.img-slider .slide .info .logo.active{
+    animation: mover-derecha .7s ease-in-out;
+}
+@keyframes mover-derecha{
+    From{
+        transform: translateX(-50px);
+    }
+}
+/*logo styles end */
+/*navigation styles */
+.img-slider .navigation{
+    position: absolute;
+    padding: 0 15px;
+    z-index: 2;
+    display: flex;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: clamp(9.375rem, 8.75rem + 10vw, 12.5rem);
+    text-decoration: none;
+    list-style: none;
+    justify-content: center;
+    /* From https://css.glass */
+background: rgba(43, 43, 43, 0.6);
+border-radius: 16px;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(8.2px);
+-webkit-backdrop-filter: blur(8.2px);
+}
+.img-slider .navigation .btn{
+    background: rgba(255, 255, 255, 0.510);
+    width: 10px;
+    height: 10px;
+    border-radius: 25px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all .7s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+.img-slider .navigation .btn.active{
+    border-radius: 25px;
+    width: 70px;
+}
+.img-slider .navigation .btn:hover{
+    background: #fff;
+}
+.img-slider .navigation .btn.active::before{
+    content: '';
+    position: absolute;
+    height: 10px;
+    width: 1px;
+    border-radius: 25px;
+    background: #fff;
+    animation: progress 8s linear;
+}
+@keyframes progress{
+    50%, 100%{
+        width: 100%;
+    }
+}
+/* navigation styles end */
+/*responsive design*/
+@media (max-width:490px){
+    .img-slider .navigation{
+        bottom: 30px;
+    }
+}
+@media (max-width:430px){
+    .img-slider .navigation{
+        bottom: 40px;
+    }
+}
+@media (max-width:370px){
+    .img-slider .navigation{
+        bottom: 55px;
+        padding: 0 10px;
+    }
+    .img-slider .navigation .btn{
+        width:8px;
+        height: 8px;
+        margin: 10px;
+    }
+}

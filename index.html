@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="img-slider">
+        <div class="slide active">
+            <h1>REVUELTO</h1>
+            <img src="imgs/lamborghini-car.png" alt="car-1" class="car" id="car-1">
+            <div class="info">
+                <img src="imgs/lamborghini-logo.png" alt="logo-1" class="logo active">
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1>GT3RS</h1>
+            <img src="imgs/porshe-car.png" alt="car-2" class="car" id="car-2">
+            <div class="info">
+                <img src="imgs/porsche-logo.png" alt="logo-2" class="logo">
+            </div>
+        </div>
+
+        <div class="slide">
+            <h1 id="h1-3">COMPETITION</h1>
+            <img src="imgs/bmw-car.png" alt="car-3" class="car" id="car-3">
+            <div class="info">
+                <img src="imgs/bmw-logo.png" alt="logo-3" class="logo">
+            </div>
+        </div>
+
+        <ul class="navigation">
+            <li class="btn active"></li>
+            <li class="btn"></li>
+            <li class="btn"></li>
+        </ul>
+    </div>
+
+    <script type="text/javascript">
+        var slides = document.querySelectorAll('.slide');
+        var btns = document.querySelectorAll('.btn');
+        var logos = document.querySelectorAll('.logo');
+
+        let currentSlide = 1; 
+
+        var manualNav = function(manual){
+
+            slides.forEach((slide) => {
+                slide.classList.remove('active');
+
+                btns.forEach((btn) => {
+                    btn.classList.remove('active');
+                });
+
+                logos.forEach((logo) => {
+                    logo.classList.remove('active');
+                });
+            });
+
+            slides[manual].classList.add('active');
+            btns[manual].classList.add('active');
+            logos[manual].classList.add('active');
+        }
+
+        btns.forEach((btn, i) => {
+            btn.addEventListener("click", () => {
+                manualNav(i);
+                currentSlide = i;
+            });
+        });
+        /*slider automatico */
+        var repeat = function(activeClass){
+            let active = document.getElementsByClassName('active');
+            let i = 1;
+
+            var repeater = () => {
+                setTimeout(function(){
+                    [...active].forEach((activeSlide) => {
+                        activeSlide.classList.remove('active');
+                    })
+                    slides[i].classList.add('active');
+                    btns[i].classList.add('active');
+                    logos[i].classList.add('active');
+                    i++;
+
+                    if(slides.length == i){
+                        i = 0;
+                    }
+                    if(i >= slides.length){
+                        return
+                    }
+                    repeater();
+                },5000);
+            }
+            repeater();
+        }
+        repeat();
+    </script>
+</body>
+</html>
